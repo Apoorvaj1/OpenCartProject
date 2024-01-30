@@ -14,6 +14,8 @@ public class LoginPage {
     private By Forgotten_Password_Link = By.linkText("Forgotten Password");
     private By logoutLinkLocator = By.linkText("Logout");
 
+    private By Forgotten_Password_Email = By.xpath("//input[@id=\"input-email\"]");
+
 
     //Constructor
     public LoginPage(WebDriver driver){
@@ -36,13 +38,23 @@ public class LoginPage {
         loginButton.click();
     }
 
-    public void clickForgottenPasswordLink() {
+
+    public void clickForgottenPasswordLink() throws InterruptedException {
         WebElement forgottenPasswordLink = driver.findElement(Forgotten_Password_Link);
+        Thread.sleep(1000);
         forgottenPasswordLink.click();
     }
 
     public boolean checkForgotPwdLink(){
         return driver.findElement(Forgotten_Password_Link).isDisplayed();
+    }
+
+    public boolean verifyForgotPasswordEmail(){
+        return driver.findElement(Forgotten_Password_Email).isDisplayed();
+    }
+
+    public void ForgottenPasswordEmail(String email){
+        driver.findElement(Forgotten_Password_Email).sendKeys(email);
     }
 
     public boolean checkLogoutLink(){
